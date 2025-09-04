@@ -1,0 +1,23 @@
+{
+  "name": "commertize-erc3643-contracts",
+  "version": "1.0.0",
+  "description": "ERC-3643 compliant smart contracts for Commertize real estate tokenization",
+  "private": true,
+  "scripts": {
+    "compile": "hardhat compile",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network plumeTestnet",
+    "deploy:mainnet": "hardhat run scripts/deploy.js --network plume",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "test": "hardhat test",
+    "node": "hardhat node"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-ethers": "^3.0.5",
+    "dotenv": "^16.4.5",
+    "hardhat": "^2.22.9",
+    "ethers": "^6.10.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  }
+}
