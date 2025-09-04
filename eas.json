@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "version": ">= 2.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "ios": {
+        "simulator": true
+      }
+    },
+    "preview": {
+      "ios": {
+        "simulator": false
+      }
+    },
+    "production": {
+      "ios": {
+        "resourceClass": "m-medium"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "cameron@commertize.com",
+        "ascAppId": "6751670634", 
+        "appleTeamId": "82LWX6TABF"
+      }
+    }
+  }
+}
