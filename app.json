@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "Commertize",
+    "slug": "commertize",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./client/public/logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./client/public/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.commertize.app",
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./client/public/logo.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.commertize.app",
+      "versionCode": 1
+    },
+    "web": {
+      "favicon": "./client/public/favicon.ico"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "commertize-ios"
+      }
+    }
+  }
+}
