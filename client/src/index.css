@@ -1,0 +1,532 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrolling animation for Forward Signals */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+}
+
+/* Sliding background animation for RUNE.CTZ sticky bar */
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(40px);
+  }
+}
+
+/* Shimmer animation for gold border effect */
+@keyframes shimmer {
+  0% {
+    background-position: -400% 0;
+  }
+  100% {
+    background-position: 400% 0;
+  }
+}
+
+/* Moving pulse animation for chatbox border */
+@keyframes movingPulse {
+  0% {
+    top: -6px;
+    left: -6px;
+    opacity: 1;
+  }
+  25% {
+    top: -6px;
+    left: calc(100% - 6px);
+    opacity: 0.8;
+  }
+  50% {
+    top: calc(100% - 6px);
+    left: calc(100% - 6px);
+    opacity: 0.6;
+  }
+  75% {
+    top: calc(100% - 6px);
+    left: -6px;
+    opacity: 0.8;
+  }
+  100% {
+    top: -6px;
+    left: -6px;
+    opacity: 1;
+  }
+}
+
+.moving-pulse {
+  animation: movingPulse 6s linear infinite;
+}
+
+/* Smooth scrolling animation for analytics */
+@keyframes scroll-analytics {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+
+/* Gold scrollbar styling */
+.gold-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #d4a017 #f1f1f1;
+}
+
+.gold-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.gold-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.gold-scrollbar::-webkit-scrollbar-thumb {
+  background: #d4a017;
+  border-radius: 4px;
+  border: 1px solid #be8d00;
+}
+
+/* CommertizerX Gold Border - Reduced glow */
+.commertizer-x-gold-border {
+  border: 6px solid #d4a017 !important;
+  box-shadow: 0 0 8px rgba(212, 160, 23, 0.4) !important;
+  outline: none !important;
+  position: relative !important;
+}
+
+.commertizer-x-gold-border::before {
+  content: '';
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  right: -12px;
+  bottom: -12px;
+  border: 2px solid #d4a017;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* CommertizerX Toggle Button Gold Border - Reduced glow */
+.commertizer-x-toggle-gold {
+  border: 6px solid #d4a017 !important;
+  box-shadow: 0 0 8px rgba(212, 160, 23, 0.4) !important;
+  outline: 3px solid #d4a017 !important;
+  outline-offset: 2px !important;
+}
+
+.gold-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #be8d00;
+}
+
+/* Slow moving background animation for "The King of RWA's" section */
+@keyframes slowDrift {
+  0% {
+    background-position: left center;
+  }
+  50% {
+    background-position: right center;
+  }
+  100% {
+    background-position: left center;
+  }
+}
+
+.slow-moving-background {
+  animation: slowDrift 80s ease-in-out infinite;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure proper form input sizing on mobile */
+  input, select, textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  /* Better modal dialog positioning on mobile */
+  [data-radix-dialog-content] {
+    margin: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+  }
+  
+  /* Improved sheet/sidebar on mobile */
+  [data-radix-dialog-overlay] {
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 55000 !important;
+    pointer-events: auto;
+  }
+  
+  /* Ensure sheet content appears above sticky elements */
+  [data-radix-dialog-content] {
+    z-index: 60000 !important;
+    pointer-events: auto;
+  }
+  
+  /* Ensure Plaid modals have highest priority and proper interaction */
+  iframe[src*="plaid"],
+  iframe[src*="cdn.plaid.com"],
+  iframe[title*="Plaid"],
+  iframe[name*="plaid"] {
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+  }
+  
+  /* Plaid Link modal overlay and content */
+  div[data-testid="plaid-link-modal"],
+  div[data-testid="plaid-link-iframe-container"],
+  div[id*="plaid"],
+  div[class*="plaid"] {
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+    position: relative !important;
+  }
+  
+  /* Global iframe interaction fix */
+  iframe {
+    pointer-events: auto !important;
+  }
+  
+  /* Ensure all elements inside any container with plaid in name can be interacted with */
+  *[id*="plaid"] *,
+  *[class*="plaid"] *,
+  *[data-testid*="plaid"] * {
+    pointer-events: auto !important;
+    -webkit-user-select: auto !important;
+    user-select: auto !important;
+    touch-action: auto !important;
+  }
+  
+  /* Override any CommertizerX z-index for Plaid */
+  body.plaid-link-open .property-chatbot {
+    z-index: 50 !important;
+  }
+}
+
+
+
+@layer base {
+  :root {
+    --background: 0 0% 98%;
+    --foreground: 240 5% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 5% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 5% 10%;
+
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 10% 96%;
+    --secondary-foreground: 240 5% 10%;
+
+    --muted: 40 5% 94%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 43 20% 92%;
+    --accent-foreground: 240 5% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 40 6% 90%;
+    --input: 40 6% 90%;
+    --ring: 43 100% 37%;
+
+    --radius: 0.75rem;
+
+    /* Custom gold gradient */
+    --gold-gradient: linear-gradient(135deg, #be8d00 0%, #d4a017 50%, #be8d00 100%);
+  }
+
+  @keyframes pulse-border {
+    0% { 
+      left: 0; 
+      top: 0; 
+    }
+    25% { 
+      left: calc(100% - 4px); 
+      top: 0; 
+    }
+    50% { 
+      left: calc(100% - 4px); 
+      top: calc(100% - 4px); 
+    }
+    75% { 
+      left: 0; 
+      top: calc(100% - 4px); 
+    }
+    100% { 
+      left: 0; 
+      top: 0; 
+    }
+  }
+
+  .moving-pulse {
+    animation: pulse-border 8s linear infinite;
+  }
+
+  .dark {
+    --background: 240 5% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 5% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 5% 8%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 100%;
+    --primary-foreground: 240 5% 6%;
+
+    --secondary: 240 4% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 4% 12%;
+    --muted-foreground: 240 5% 64%;
+
+    --accent: 240 4% 12%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 4% 12%;
+    --input: 240 4% 12%;
+    --ring: 43 100% 37%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  .container {
+    @apply px-4 sm:px-6 mx-auto max-w-7xl lg:px-8;
+  }
+
+  .container-narrow {
+    @apply px-4 sm:px-6 mx-auto max-w-5xl lg:px-8;
+  }
+
+  /* Hero text styles */
+  .hero-text {
+    @apply text-2xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-light tracking-tight leading-[0.9];
+  }
+
+  .hero-subtext {
+    @apply text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-light leading-relaxed;
+  }
+
+  /* Section spacing */
+  .section {
+    @apply py-12 sm:py-16 md:py-20 lg:py-32;
+  }
+
+  .section-sm {
+    @apply py-8 sm:py-12 md:py-16 lg:py-24;
+  }
+
+  /* Value tiles */
+  .value-tile {
+    @apply bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 hover:shadow-lg transition-all duration-300 hover:border-primary/20;
+  }
+
+  /* Property grid */
+  .property-grid {
+    @apply grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-10;
+  }
+
+  .property-card {
+    @apply bg-card border border-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:border-primary/30;
+  }
+
+  /* Gold gradient background */
+  .gold-gradient {
+    background: var(--gold-gradient);
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply bg-primary hover:bg-primary/90 text-primary-foreground font-medium px-4 py-3 sm:px-6 sm:py-4 md:px-8 rounded-xl transition-all duration-300 hover:shadow-lg hover:scale-[1.02];
+  }
+
+  .btn-outline {
+    @apply border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground font-medium px-4 py-3 sm:px-6 sm:py-4 md:px-8 rounded-xl transition-all duration-300 hover:shadow-lg;
+  }
+
+  /* Typography improvements */
+  .display-1 {
+    @apply text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-light tracking-tight;
+  }
+
+  .display-2 {
+    @apply text-xl sm:text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-light tracking-tight;
+  }
+
+  .body-large {
+    @apply text-base sm:text-lg md:text-xl leading-relaxed text-muted-foreground;
+  }
+
+  /* Animation utilities */
+  .fade-up {
+    @apply opacity-0 translate-y-8;
+  }
+
+  .fade-up-visible {
+    @apply opacity-100 translate-y-0 transition-all duration-700 ease-out;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Marquee animations */
+@keyframes flipText {
+  0% { 
+    opacity: 1; 
+    transform: translateY(0) rotateX(0deg); 
+  }
+  20% { 
+    opacity: 0; 
+    transform: translateY(-10px) rotateX(90deg); 
+  }
+  21% { 
+    opacity: 0; 
+    transform: translateY(10px) rotateX(-90deg); 
+  }
+  40% { 
+    opacity: 1; 
+    transform: translateY(0) rotateX(0deg); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) rotateX(0deg); 
+  }
+}
+
+.text-flip {
+  animation: flipText 2s ease-out;
+  transform-style: preserve-3d;
+  display: inline-block;
+  transform-origin: center center;
+}
+
+.text-flip:hover, .text-flip:focus { 
+  animation-play-state: paused; 
+}
+
+/* Restored original black button styling - all gold overrides removed */
+
+/* Force all iframes to be interactive - especially for Plaid */
+iframe,
+iframe * {
+  pointer-events: auto !important;
+  -webkit-user-select: auto !important;
+  user-select: auto !important;
+  touch-action: auto !important;
+}
+
+/* Remove any potential overlay blocking iframe interactions */
+body::before,
+body::after,
+*::before,
+*::after {
+  pointer-events: none !important;
+}
+
+/* Ensure main content can still be interacted with */
+main *,
+.container *,
+button,
+input,
+select,
+textarea,
+a {
+  pointer-events: auto !important;
+}
+
+/* Additional mobile optimizations for dialogs and modals */
+@media screen and (max-width: 768px) {
+  /* Modal and dialog mobile improvements */
+  [role="dialog"],
+  [data-radix-dialog-content] {
+    width: calc(100vw - 1rem) !important;
+    max-width: calc(100vw - 1rem) !important;
+    margin: 0.5rem !important;
+    max-height: calc(100vh - 1rem) !important;
+    overflow-y: auto !important;
+  }
+  
+  /* Processing states mobile styling */
+  .processing-content {
+    padding: 1rem !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+  
+  /* Better card spacing on mobile */
+  .card-content {
+    padding: 0.75rem !important;
+  }
+  
+  /* Property analysis content mobile */
+  .property-analysis {
+    text-align: left !important;
+    padding: 0.75rem !important;
+  }
+  
+  .property-analysis h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .property-analysis p {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+}
